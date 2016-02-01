@@ -65,13 +65,15 @@
 
   <aside class="read-next inner pure-g">
     {{#prev_post}}
-      <article class="next-post pure-u-1 pure-u-sm-1-2" itemscope="itemscope" itemtype="http://schema.org/Article">
+      <article class="prev-post pure-u-1 pure-u-sm-1-2" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <p class="read-next-label">Previous Post</p>
         <a itemprop="url" href="{{url}}"><h2 itemprop="headline name">{{title}}</h2></a>
         <p itemprop="description about">{{excerpt words="20"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a></p>
       </article>
     {{/prev_post}}
     {{#next_post}}
       <article class="next-post pure-u-1 pure-u-sm-1-2" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <p class="read-next-label">Next Post</p>
         <a itemprop="url" href="{{url}}"><h2 itemprop="headline name">{{title}}</h2></a>
         <p itemprop="description about">{{excerpt words="20"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a></p>
       </article>
