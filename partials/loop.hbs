@@ -1,25 +1,23 @@
-{{! Previous/next page links - only displayed on page 2+ }}
-<div class="extra-pagination inner">
-    {{pagination}}
-</div>
-
-{{! This is the post loop - each post will be output using this markup }}
 {{#foreach posts}}
-<article class="{{post_class}}">
+  <article itemscope="itemscope" itemtype="http://schema.org/Article" class="list-post {{post_class}}">
+    <meta itemprop="author" content="Tyler Walters"/>
+
     <header class="post-header">
-        <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+      <h2 itemprop="headline name" class="post-title"><a href="{{url}}" itemprop="url">{{{title}}}</a></h2>
+      <span class="post-meta">
+        <time datetime="{{date format='YYYY-MM-dd HH:mm:ss Z'}}" itemprop="datePublished">{{date format="MMMM DD, YYYY"}}</time> in
+        {{#foreach tags}}
+          <span itemprop="keywords"><a href="{{url}}">{{name}}</a></span>
+        {{/foreach}}
+      </span>
     </header>
-    <section class="post-excerpt">
-        <p>{{excerpt words="26"}} <a class="read-more" href="{{url}}">&raquo;</a></p>
+
+    <section itemprop="description about" class="post-excerpt">
+      {{excerpt words="50"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a>
     </section>
-    <footer class="post-meta">
-        {{#if author.image}}<img class="author-thumb" src="{{author.image}}" alt="{{author.name}}" nopin="nopin" />{{/if}}
-        {{author}}
-        {{tags prefix=" on "}}
-        <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
-    </footer>
-</article>
+  </article>
 {{/foreach}}
 
-{{! Previous/next page links - displayed on every page }}
-{{pagination}}
+<div class="inner">
+  {{pagination}}
+</div>

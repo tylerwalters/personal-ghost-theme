@@ -1,0 +1,28 @@
+// utilities.styl
+
+/* Clears shit */
+.clearfix:before,
+.clearfix:after
+  content " "
+  display table
+.clearfix:after
+  clear: both
+.clearfix
+*zoom: 1
+
+/* Hides shit */
+.hidden
+  text-indent -9999px
+  visibility hidden
+  display none
+
+/* Centres vertically yo. (IE8+) */
+.vertical
+  display table-cell
+  vertical-align middle
+
+.pull-left
+  float left
+
+.pull-right
+  float right

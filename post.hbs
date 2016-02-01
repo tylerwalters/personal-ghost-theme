@@ -1,99 +1,85 @@
 {{!< default}}
 
-{{! The comment above "< default" means - insert everything in this file into
-    the {body} of the default.hbs template, which contains our header/footer. }}
-
-{{! Everything inside the #post tags pulls data from the post }}
-{{#post}}
-
-<header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
-    <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
-        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
-        {{#if @blog.navigation}}
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-        {{/if}}
-    </nav>
+<header class="site-header site-page-header">
+  <div itemscope itemtype="http://schema.org/Person" class="site-head-content inner">
+    <h2 itemprop="name" class="blog-title"><a href="{{@blog.url}}" itemprop="url">{{@blog.title}}</a></h2>
+    <h2 itemprop="description" class="blog-description">Web Developer, Chilehead, Beer and Wing Enthusiast</h2>
+  </div>
 </header>
 
-<main class="content" role="main">
-    <article class="{{post_class}}">
+{{navigation}}
 
-        <header class="post-header">
-            <h1 class="post-title">{{title}}</h1>
-            <section class="post-meta">
-                <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix=" on "}}
-            </section>
-        </header>
+{{#post}}
+  <main role="main" class="content">
+    <article itemscope="itemscope" itemtype="http://schema.org/Article" class="post-detail {{post_class}}">
+      <header class="post-header">
+        <h1 itemprop="headline name" class="post-title">{{title}}</h1>
 
-        <section class="post-content">
-            {{content}}
+        <span class="post-meta">
+          <time datetime="{{date format='YYYY-MM-dd HH:mm:ss Z'}}" itemprop="datePublished">{{date format='MMMM DD, YYYY'}}</time> in
+          {{#foreach tags}}
+            <span itemprop="keywords"><a href="{{url}}">{{name}}</a></span>
+          {{/foreach}}
+        </span>
+      </header>
+
+      <section itemprop="articleBody" class="post-body">
+        {{content}}
+      </section>
+
+      <footer class="post-footer">
+        <section class="share">
+          <h4>Share this post</h4>
+          <a class="social-iconr" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}"
+             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fa fa-2x fa-twitter nav-twitter"></i><span class="hidden">Twitter</span>
+          </a>
+          <a class="social-icon" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="fa fa-2x fa-facebook nav-facebook"></i><span class="hidden">Facebook</span>
+          </a>
+          <a class="social-icon" href="https://plus.google.com/share?url={{url absolute="true"}}"
+             onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+            <i class="fa fa-2x fa-google-plus nav-google-plus"></i><span class="hidden">Google+</span>
+          </a>
+          <a class="social-icon" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url}}&amp;title={{encode title}}&amp;summary={{encode excerpt characters="150"}}&amp;source=Tyler%20Walters" onclick="window.open(this.href, 'facebook-share','width=520,height=570');return false;">
+            <i class="fa fa-2x fa-linkedin nav-linkedin"></i><span class="hidden">LinkedIn</span>
+          </a>
         </section>
 
-        <footer class="post-footer">
-
-        {{! Everything inside the #author tags pulls data from the author }}
         {{#author}}
-
-            {{#if image}}
-            <figure class="author-image">
-                <a class="img" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
+          <section itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person" class="author pure-g">
+            <figure class="author-image pure-u-1 pure-u-sm-1-3">
+              <img src="//www.gravatar.com/avatar/7ccdffe2c26edec1b53cf7bc66d4bb21?d=404&amp;s=240" alt="{{name}}" itemprop="image"/>
             </figure>
-            {{/if}}
 
-            <section class="author">
-                <h4><a href="{{url}}">{{name}}</a></h4>
+            <div class="author-bio pure-u-1 pure-u-sm-2-3">
+              <h4>Written by <a href="{{url}}"><span itemprop="name">{{name}}</span></a></h4>
 
-                {{#if bio}}
-                    <p>{{bio}}</p>
-                {{else}}
-                    <p>Read <a href="{{url}}">more posts</a> by this author.</p>
-                {{/if}}
-                <div class="author-meta">
-                    {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-                    {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
-                </div>
-            </section>
-
+              {{#if bio}}
+                <p itemprop="description">{{bio}}</p>
+              {{else}}
+                <p>Read <a href="{{url}}">more posts</a> by this author.</p>
+              {{/if}}
+            </div>
+          </section>
         {{/author}}
-
-            <section class="share">
-                <h4>Share this post</h4>
-                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <span class="hidden">Twitter</span>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <span class="hidden">Facebook</span>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <span class="hidden">Google+</span>
-                </a>
-            </section>
-
-        </footer>
-
+      </footer>
     </article>
-</main>
+  </main>
 
-<aside class="read-next">
-    {{#next_post}}
-    <a class="read-next-story {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
-        <section class="post">
-            <h2>{{title}}</h2>
-            <p>{{excerpt words="19"}}&hellip;</p>
-        </section>
-    </a>
-    {{/next_post}}
+  <aside class="read-next inner pure-g">
     {{#prev_post}}
-    <a class="read-next-story prev {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
-        <section class="post">
-            <h2>{{title}}</h2>
-            <p>{{excerpt words="19"}}&hellip;</p>
-        </section>
-    </a>
+      <article class="next-post pure-u-1 pure-u-sm-1-2" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <a itemprop="url" href="{{url}}"><h2 itemprop="headline name">{{title}}</h2></a>
+        <p itemprop="description about">{{excerpt words="20"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a></p>
+      </article>
     {{/prev_post}}
-</aside>
-
+    {{#next_post}}
+      <article class="next-post pure-u-1 pure-u-sm-1-2" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <a itemprop="url" href="{{url}}"><h2 itemprop="headline name">{{title}}</h2></a>
+        <p itemprop="description about">{{excerpt words="20"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a></p>
+      </article>
+    {{/next_post}}
+  </aside>
 {{/post}}
