@@ -50,11 +50,11 @@
         {{#author}}
           <section itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person" class="author pure-g">
             <figure class="author-image pure-u-1 pure-u-sm-1-3">
-              <img src="//www.gravatar.com/avatar/7ccdffe2c26edec1b53cf7bc66d4bb21?d=404&amp;s=240" alt="{{name}}" itemprop="image"/>
+              <img src="{{asset "img/photo.jpg"}}" alt="{{name}}" itemprop="image"/>
             </figure>
 
             <div class="author-bio pure-u-1 pure-u-sm-2-3">
-              <h4>Written by <a href="{{url}}"><span itemprop="name">{{name}}</span></a></h4>
+              <h4>Written by <span itemprop="name">{{name}}</span></h4>
 
               {{#if bio}}
                 <p itemprop="description">{{bio}}</p>
