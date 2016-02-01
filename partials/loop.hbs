@@ -1,6 +1,6 @@
 {{#foreach posts}}
   <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="list-post {{post_class}}">
-    <meta itemprop="author" content="Tyler Walters"/>
+    <meta itemprop="author publisher" content="Tyler Walters"/>
 
     <header class="post-header loop-header">
       <h2 itemprop="headline name" class="post-title"><a href="{{url}}" itemprop="url">{{{title}}}</a></h2>
@@ -13,7 +13,7 @@
       </span>
     </header>
 
-    <section itemprop="description about" class="post-excerpt">
+    <section itemprop="description" class="post-excerpt">
       {{excerpt words="50"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a>
     </section>
   </article>
