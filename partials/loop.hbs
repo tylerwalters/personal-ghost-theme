@@ -13,9 +13,15 @@
       </span>
     </header>
 
-    <section itemprop="description" class="post-excerpt">
-      {{excerpt words="50"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a>
-    </section>
+    {{#has tag="snippets"}}
+      <section itemprop="articleBody" class="post-body">
+        {{content}}
+      </section>
+    {{else}}
+      <section itemprop="description" class="post-excerpt">
+        {{excerpt words="50"}} <a class="read-more" href="{{url}}" itemprop="url">&raquo;</a>
+      </section>
+    {{/has}}
   </article>
 {{/foreach}}
 
