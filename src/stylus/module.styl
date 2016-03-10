@@ -38,13 +38,17 @@
   transition max-height ease 0.2s
 
 .site-navigation a
+  float left
   display block
-  padding .8em 1em
   text-decoration none
+  width 50%
+  text-align center
   transition color ease 0.2s
   transition background-color ease 0.2s
   @media (min-width 43.75em)
-    float left
+    width auto
+    padding .8em 1em
+    text-align left
 
 .site-navigation a:hover
   background-color #e0dbd2
@@ -52,7 +56,7 @@
 
 .site-navigation a.social
   float right
-  width 20%
+  width 25%
   text-align center
   @media (min-width 43.75em)
     width auto
@@ -126,6 +130,16 @@
 
 .post-excerpt > *:nth-child(n+4)
   display none
+
+.post-body pre.language-javascript {
+  margin 0px -20px
+  border-radius 0
+  padding 1em 20px 1.3em
+
+  @media (min-width 43.75em)
+    margin 0px -128px
+    padding 1em 128px 1.3em
+}
 
 .share
   margin-bottom 1em
@@ -225,76 +239,3 @@
 .button-default:hover
   background #eae7e1
   color light-blue
-
-.project-tile
-  margin-bottom 1em
-  padding 2em
-  background-color rgba(255,255,255,0.7)
-
-.project-title
-  margin 0 0 1em
-
-.project-content
-  overflow auto
-
-.project-image
-  padding-left 1em
-  float right
-
-.project-image img
-  border 1px solid rgba(0,0,0,0.3)
-
-.project-summary, .project-external-links
-  display block
-  padding-bottom .4em
-  font .8em sans-font-stack
-  color #888
-  @media (min-width 43.75em)
-    font-size 1em
-
-.project-tags
-  list-style none
-  display block
-  overflow auto
-  padding 0 0 .8em
-
-.project-tags li
-  float left
-  margin 0 .1em .1em 0
-  text-decoration none
-
-.project-tags li a
-  float left
-  font .8em sans-font-stack
-  margin 0 .5em .5em 0
-  padding 0 .5em
-  background-color #DFE9EE
-  border 1px solid #81BFDD
-  text-decoration none
-
-.admin-link-list
-  margin 1em .5em 2em 0
-
-.admin-link
-  display block
-  width 100%
-  font 1em sans-font-stack
-  margin-top -1px
-  padding 1em .5em
-  background-color #DFE9EE
-  border-top 1px solid #81BFDD
-  border-bottom 1px solid #81BFDD
-  text-decoration none
-
-.admin-link:hover
-  background-color #F2F6F9
-
-.admin-post-meta
-  float right
-
-.admin-form textarea
-  width 100%
-  height 300px
-  @media (min-width 43.75em)
-    width 27.5em
-    height 700px

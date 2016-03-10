@@ -1,9 +1,9 @@
-<nav class="site-navigation"><span class="nav-toggle">Menu</span>
+<nav class="site-navigation">
   <div class="inner nav-inner">
     {{#foreach navigation}}
       <a href="{{url absolute="true"}}" class="nav-{{slug}}{{#if current}} nav-current{{/if}}">{{label}}</a>
     {{/foreach}}
-    <a href="/rss" class="social"><i class="fa fa-lg fa-rss nav-rss"></i><span class="hidden">RSS</span></a>
+    <a href="https://feeds.feedburner.com/tylerwalters" class="social"><i class="fa fa-lg fa-rss nav-rss"></i><span class="hidden">RSS</span></a>
     <a href="https://github.com/tylerwalters/" class="social"><i class="fa fa-lg fa-git nav-github"></i><span class="hidden">GitHub</span></a>
     <a href="https://www.linkedin.com/in/tylerwalters" class="social"><i class="fa fa-lg fa-linkedin nav-linkedin"></i><span class="hidden">LinkedIn</span></a>
     <a href="https://twitter.com/_twalters" class="social"><i class="fa fa-lg fa-twitter nav-twitter"></i><span class="hidden">Twitter</span></a>
