@@ -7,7 +7,8 @@ var gulp        = require('gulp'),
     stylus      = require('gulp-stylus'),
     sourcemaps  = require('gulp-sourcemaps'),
     concat      = require('gulp-concat'),
-    uglify      = require('gulp-uglify');
+    uglify      = require('gulp-uglify'),
+    cleanCSS    = require('gulp-clean-css');
 
 
 gulp.task('lint', function () {
@@ -19,9 +20,16 @@ gulp.task('lint', function () {
 gulp.task('stylus', function () {
   return gulp.src('src/stylus/screen.styl')
     .pipe(sourcemaps.init())
-    .pipe(stylus({compress: true}))
+    .pipe(stylus())
     .pipe(sourcemaps.write())
     .pipe(concat('screen.css'))
+    .pipe(gulp.dest('assets/css'));
+});
+
+gulp.task('css-min', function () {
+  return gulp.src('assets/css/screen.css')
+    .pipe(cleanCSS())
+    .pipe(concat('screen.min.css'))
     .pipe(gulp.dest('assets/css'));
 });
 
@@ -34,8 +42,8 @@ gulp.task('js-min', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('src/stylus/**/*.styl', ['stylus']);
+  gulp.watch('src/stylus/**/*.styl', ['stylus', 'css-min']);
   gulp.watch('src/js/**/*.js', ['lint', 'js-min']);
 });
 
-gulp.task('build', ['lint', 'stylus', 'js-min']);
+gulp.task('build', ['lint', 'stylus', 'js-min', 'css-min']);
